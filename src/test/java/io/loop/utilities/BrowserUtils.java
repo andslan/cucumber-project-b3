@@ -165,4 +165,17 @@ public class BrowserUtils {
         wait.until(ExpectedConditions.invisibilityOf(element));
     }
 
+    /**
+     * performs a pause
+     * @param seconds
+     * @author nadir
+     */
+    public static void justWait (int seconds){
+        try{
+            Thread.sleep(seconds);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+
 }

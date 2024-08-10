@@ -4,6 +4,8 @@ import io.cucumber.java.en.*;
 import io.loop.pages.LoginPage;
 import io.loop.utilities.*;
 
+import java.util.Map;
+
 import static org.junit.Assert.assertTrue;
 
 public class LoginStepDefs {
@@ -22,10 +24,12 @@ public class LoginStepDefs {
         assertTrue(loginPage.loginButton.isDisplayed());
         loginPage.usernameInput.sendKeys(DocuportConstants.USERNAME_CLIENT);
     }
+
     @When("user enters password for client")
     public void user_enters_password_for_client() {
 
     }
+
     @When("user clicks login button")
     public void user_click_login_button() {
 
@@ -40,10 +44,12 @@ public class LoginStepDefs {
     public void user_enters_username_for_employee() {
 
     }
+
     @When("user enters password for employee")
     public void user_enters_password_for_employee() {
 
     }
+
     @Then("user should see the home page for employee")
     public void user_should_see_the_home_page_for_employee() {
 
@@ -53,10 +59,12 @@ public class LoginStepDefs {
     public void user_enters_username_for_advisor() {
 
     }
+
     @When("user enters password for advisor")
     public void user_enters_password_for_advisor() {
 
     }
+
     @Then("user should see the home page for advisor")
     public void user_should_see_the_home_page_for_advisor() {
 
@@ -66,12 +74,34 @@ public class LoginStepDefs {
     public void user_enters_username_for_supervisor() {
 
     }
+
     @When("user enters password for supervisor")
     public void user_enters_password_for_supervisor() {
 
     }
+
     @Then("user should see the home page for supervisor")
     public void user_should_see_the_home_page_for_supervisor() {
 
     }
+
+    @When("user enters credentials")
+    public void user_enters_credentials(Map<String, String> credentials) {
+
+//        for (Map.Entry <String, String> entry : credentials.entrySet()){
+//            String key = entry.getKey();
+//            System.out.println("key = " + key);
+//
+//            String value = entry.getValue();
+//            System.out.println("value = " + value);
+//
+//            System.out.println("=======================================");
+//        }
+
+        loginPage.loginDocuport(credentials.get("username"), credentials.get("password"));
+
+
+    }
+
 }
+

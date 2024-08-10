@@ -11,8 +11,9 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "io/loop/step_definitions",
         dryRun = false,
-        tags = "@nsh",
-        monochrome = false
+        tags = "@googleSearchOutline or @smoke",
+        monochrome = false,
+        publish = false
 )
 
 public class CukesRunner {
