@@ -12,7 +12,8 @@ import org.junit.runner.RunWith;
         glue = "io/loop/step_definitions",
         dryRun = false,
         tags = "@googleSearchOutline or @smoke",
-        monochrome = false
+        monochrome = false,
+        publish = false
 )
 
 public class CukesRunner {
