@@ -4,10 +4,12 @@ import io.cucumber.java.en.*;
 import io.loop.pages.GoogleSearchPage;
 import io.loop.utilities.BrowserUtils;
 import io.loop.utilities.ConfigurationReader;
+import io.loop.utilities.DocuportConstants;
 import io.loop.utilities.Driver;
 import org.openqa.selenium.Keys;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
@@ -43,7 +45,7 @@ public class GoogleSearchStepDefs {
     }
 
     @Then("user searches the following item")
-    public void user_searches_the_following_item(List<String> items) throws InterruptedException {
+    public void user_searches_the_following_item(List<Map<String, String>> items) throws InterruptedException {
 //        for (String item : items) {
 //            googleSearchPage.searchBox.clear();
 //            googleSearchPage.searchBox.sendKeys(item + Keys.ENTER);
@@ -51,16 +53,31 @@ public class GoogleSearchStepDefs {
 //            assertEquals(item + " - Google Search", Driver.getDriver().getTitle());
 //        }
 
-        items.forEach(p -> {
-           googleSearchPage.searchBox.clear();
-           googleSearchPage.searchBox.sendKeys(p + Keys.ENTER);
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            assertEquals(p + " - Google Search", Driver.getDriver().getTitle());
-        });
+//        items.forEach(p -> {
+//           googleSearchPage.searchBox.clear();
+//           googleSearchPage.searchBox.sendKeys(p + Keys.ENTER);
+//            try {
+//                Thread.sleep(1000);
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//            assertEquals(p + " - Google Search", Driver.getDriver().getTitle());
+//        });
+
+        for (Map<String, String> item : items) {
+            System.out.println("item.get(\"items\") = " + item.get("items"));
+
+        }
+    }
+
+    @When("user searches for the {string}")
+    public void user_searches_for_the(String country) {
+       googleSearchPage.searchBox.sendKeys("What is the capital of " + country + Keys.ENTER);
+       BrowserUtils.justWait(DocuportConstants.small);
+    }
+    @Then("user should see the {string} in the result")
+    public void user_should_see_the_in_the_result(String capital) {
+        assertEquals("Expected capital city: " + capital + " does NOT match with actual one: " + googleSearchPage.capital.getText(), googleSearchPage.capital.getText(), capital);
     }
 
 }
