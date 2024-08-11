@@ -1,6 +1,7 @@
 Feature: Scenario outline practice
 
   @googleSearchOutline
+    # @smoke
   Scenario Outline: Google search for capital cities
     Given user is on Google search page
     When user searches for the "<country>"
@@ -11,6 +12,6 @@ Feature: Scenario outline practice
       | Azerbaijan  | Baku       |
       | Ukraine     | Kyiv       |
       | Afghanistan | Kabul      |
-      | USA         | Washington |
+      | USA         | Washington, D.C. |
       | Turkiye     | Ankara     |
       | Uzbekistan  | Tashkent   |
