@@ -21,9 +21,9 @@ public class Driver {
     static - run before everything else and use ins static method
      */
 
-    // private static WebDriver driver;
-    // implement threadLocal to achieve multi-thread locally
-    private static InheritableThreadLocal<WebDriver> driverPool = new InheritableThreadLocal<>();
+    //private static WebDriver driver;
+    // implement threadLocal to achieve multi thread locally
+    private static InheritableThreadLocal <WebDriver> driverPool = new InheritableThreadLocal<>();
 
     /*
     reusable method that will return the same driver instance everytime called
@@ -39,20 +39,26 @@ public class Driver {
             switch (browserType.toLowerCase()){
                 case "chrome":
                     driverPool.set(new ChromeDriver());
+                    driverPool.get().manage().window().maximize();
+                    driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(Integer.valueOf(ConfigurationReader.getProperties("timeouts"))));
                     break;
                 case "firefox":
                     driverPool.set(new FirefoxDriver());
+                    driverPool.get().manage().window().maximize();
+                    driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(Integer.valueOf(ConfigurationReader.getProperties("timeouts"))));
                     break;
                 case "safari":
                     driverPool.set(new SafariDriver());
+                    driverPool.get().manage().window().maximize();
+                    driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(Integer.valueOf(ConfigurationReader.getProperties("timeouts"))));
                     break;
                 case "headless":
                     ChromeOptions options = new ChromeOptions();
                     options.addArguments("--headless");
                     driverPool.set(new ChromeDriver(options));
+                    driverPool.get().manage().window().maximize();
+                    driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(Integer.valueOf(ConfigurationReader.getProperties("timeouts"))));
             }
-            driverPool.get().manage().window().maximize();
-            driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         }
         return driverPool.get();
     }
@@ -64,7 +70,7 @@ public class Driver {
     public static void closeDriver(){
         if(driverPool.get() !=null){
             driverPool.get().quit();
-           // driver = null;
+            //driver = null;
             driverPool.remove();
         }
     }

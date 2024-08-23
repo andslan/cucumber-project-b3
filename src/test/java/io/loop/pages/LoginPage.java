@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
+public class LoginPage extends DocuportBasePage {
 
 
     public LoginPage(){
@@ -39,8 +39,8 @@ public class LoginPage {
         passwordInput.clear();
         passwordInput.sendKeys(password);
         loginButton.click();
-        if(BrowserUtils.waitForVisibility(continueButton, DocuportConstants.small).isDisplayed()){
-            continueButton.click();
-        }
+//        if(BrowserUtils.waitForVisibility(continueButton, DocuportConstants.small).isDisplayed()){
+//            continueButton.click();
+//        }
     }
 }

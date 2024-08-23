@@ -1,12 +1,18 @@
 package io.loop.step_definitions;
 
 import io.cucumber.java.en.*;
+import io.loop.pages.POM;
+import io.loop.utilities.ConfigurationReader;
+import io.loop.utilities.Driver;
 
 public class SmartBearStepDefs {
 
+POM access = new POM();
+
     @Given("user is already logged in and navigated to order page")
     public void user_is_already_logged_in_and_navigated_to_order_page() {
-
+        Driver.getDriver().get(ConfigurationReader.getProperties("smart.bear"));
+        access.getSmartBearLoginPage().loginAsTester();
     }
     @When("user selects product type {string}")
     public void user_selects_product_type(String string) {

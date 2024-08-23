@@ -1,6 +1,6 @@
 Feature: Scenario outline practice
 
-  @googleSearchOutline
+  @googleSearchOutline @B3G2-284 @B3G2-291
     # @smoke
   Scenario Outline: Google search for capital cities
     Given user is on Google search page
